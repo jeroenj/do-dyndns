@@ -46,7 +46,7 @@ def set_ip
 end
 
 def log message
-  puts "[#{Time.now}] #{message}"
+  puts "[#{Time.now}] (#{RECORD}.#{DOMAIN}) #{message}"
 end
 
 set_ip

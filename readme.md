@@ -1,6 +1,6 @@
 # Readme
 ## Usage
-Set your `CLIENT_ID` and `API_KEY` in `dns.rb`. Optionally you can also set `DOMAIN` and `RECORD`.
+Generate an application tokenn and set it as `TOKEN` in `dns.rb`. Optionally you can also set `DOMAIN` and `RECORD`.
 First run `bundle install` to install the dependencies.
 Afterwards run:
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'httparty'
 
 TOKEN = ENV['DIGITALOCEAN_ACCESS_TOKEN'] || ''

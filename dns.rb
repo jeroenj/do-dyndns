@@ -1,6 +1,6 @@
 require 'httparty'
 
-TOKEN = ''
+TOKEN = ENV['DIGITALOCEAN_ACCESS_TOKEN'] || ''
 DOMAIN = ARGV[0]
 RECORD = ARGV[1]
 

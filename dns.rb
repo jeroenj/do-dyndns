@@ -3,8 +3,8 @@
 require 'httparty'
 
 TOKEN = ENV['DIGITALOCEAN_ACCESS_TOKEN'] || ''
-DOMAIN = ARGV[0]
-RECORD = ARGV[1]
+DOMAIN = ENV['DOMAIN'] || ARGV[0]
+RECORD = ENV['RECORD'] || ARGV[1] || ARGV[0]
 
 class Record
   include HTTParty

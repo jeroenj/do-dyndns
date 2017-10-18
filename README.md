@@ -13,4 +13,6 @@ DIGITAL_OCEAN_TOKEN=secret ruby dns.rb domain record
 
 ### Using docker
 
+```
 docker run -e DIGITALOCEAN_ACCESS_TOKEN=secret -e DOMAIN=example.com -e RECORD= jeroenj/do-dyndns
+```

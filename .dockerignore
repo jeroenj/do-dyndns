@@ -1,2 +1,5 @@
+.dockerignore
 .env
 .git
+.ruby-version
+Dockerfile

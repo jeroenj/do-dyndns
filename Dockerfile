@@ -1,4 +1,4 @@
-FROM ruby:2.4.1-alpine
+FROM ruby:2.4.2-alpine
 
 RUN apk upgrade --no-cache && \
     apk add --no-cache bind-tools

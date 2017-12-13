@@ -20,7 +20,9 @@ class Record
   end
 
   def all
-    self.class.get("/domains/#{domain}/records?per_page=200", headers: HEADERS)['domain_records']
+    response = self.class.get("/domains/#{domain}/records?per_page=200", headers: HEADERS)
+    fail_and_exit("Fetching all records failed: #{response.body}") unless response.success?
+    response['domain_records']
   end
 
   def update(ip)
@@ -28,13 +30,19 @@ class Record
     if record['data'] == ip
       log("Record already set to #{ip}")
     else
-      self.class.put("/domains/#{domain}/records/#{record['id']}", query: { data: ip }, headers: HEADERS)
+      response = self.class.put("/domains/#{domain}/records/#{record['id']}", query: { data: ip }, headers: HEADERS)
+      fail_and_exit("Updating record to #{ip} failed: #{response.body}") unless response.success?
       log("Record set to #{ip}")
     end
   end
 
   def log(message)
     puts "[#{Time.now}] (#{name}.#{domain}) #{message}"
+  end
+
+  def fail_and_exit(message)
+    STDERR.puts("[#{Time.now}] (#{name}.#{domain}) #{message}")
+    exit false
   end
 end
 

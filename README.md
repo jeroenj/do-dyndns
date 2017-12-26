@@ -1,4 +1,4 @@
-# Readme
+# do-dyndns
 ## Usage
 ### From source
 Generate an application token and pass it by using the `DIGITALOCEAN_ACCESS_TOKEN` environment variable. Domain and record are the options passed to the script or can be set as the `DOMAIN` and `RECORD` environment variables.

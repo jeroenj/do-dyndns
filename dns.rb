@@ -19,10 +19,18 @@ class Record
     @name = name
   end
 
-  def all
+  def all(retries = 1)
     response = self.class.get("/domains/#{domain}/records?per_page=200", headers: HEADERS)
-    fail_and_exit("Fetching all records failed: #{response.body}") unless response.success?
-    response['domain_records']
+    if response.success?
+      response['domain_records']
+    elsif retries < 3 && %w(service_unavailable internal_server_error).include?(response['id'])
+      log("Fetching all records failed after #{retries} attempts: #{response.body}") unless response.success?
+      sleep 10 ** retries
+      retries += 1
+      all(retries)
+    else
+      fail_and_exit("Fetching all records failed: #{response.body}") unless response.success?
+    end
   end
 
   def update(ip)

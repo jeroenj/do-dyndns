@@ -1,7 +1,10 @@
 FROM ruby:2.4.2-alpine
 
 RUN apk upgrade --no-cache && \
-    apk add --no-cache bind-tools
+    apk add --no-cache bind-tools && \
+    adduser -S do-dyndns
+
+USER do-dyndns
 
 ADD Gemfile Gemfile.lock /app/
 WORKDIR /app
